@@ -1,4 +1,5 @@
 {
     "C_Cpp.errorSquiggles": "disabled",
-    "code-runner.runInTerminal": true
+    "code-runner.runInTerminal": true,
+    "terminal.integrated.cwd": "${workspaceFolder}\\cpp_Recursion"
 }
