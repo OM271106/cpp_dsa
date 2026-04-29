@@ -1,34 +1,44 @@
 #include <iostream>
-#include <algorithm> // Required for the swap() function
+#include <algorithm> // Required for swap()
 
 using namespace std;
 
-// Recursive function to swap the array
-void swapArr(int a[], int i, int n) {
-    // Base case: stop when we reach the middle of the array
-    if (i >= n / 2) {
+// Recursive function to reverse (swap) the array
+void reverseArray(int arr[], int start, int end) {
+    // Base case: stop when the pointers meet or cross in the middle
+    if (start >= end) {
         return;
     }
     
-    // Swap the elements from the start and the end
-    swap(a[i], a[n - i - 1]);
+    // Swap the elements at the current start and end positions
+    swap(arr[start], arr[end]);
     
-    // Move to the next pair
-    swapArr(a, i + 1, n);
+    // Recurse inward for the next pair
+    reverseArray(arr, start + 1, end - 1);
 }
 
 int main() {
-    // 1. Hardcoded array (No input.txt needed!)
-    // These are the exact numbers you were trying to use earlier
-    int a[] = {1, 2, 3, 4}; 
-    int n = 4; // Size of the array
+    int n;
     
-    // 2. Call the recursive function starting at index 0
-    swapArr(a, 0, n);
+    // 1. Read the size of the array first
+    if (!(cin >> n)) {
+        return 0; // Exit safely if the file is empty
+    }
+
+    int arr[n];
     
-    // 3. Print the swapped array
+    // 2. Read the actual elements into the array
     for (int i = 0; i < n; i++) {
-        cout << a[i] << " ";
+        cin >> arr[i];
+    }
+    
+    // 3. Call the recursive function
+    // Start index is 0, End index is n-1 (the last item)
+    reverseArray(arr, 0, n - 1);
+    
+    // 4. Print the newly reversed array
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
     }
     cout << endl;
 
