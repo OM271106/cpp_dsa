@@ -2,7 +2,7 @@
 #include <algorithm> // Required for swap()
 
 using namespace std;
-
+//recursion
 // Recursive function to reverse (swap) the array
 void reverseArray(int arr[], int start, int end) {
     // Base case: stop when the pointers meet or cross in the middle
