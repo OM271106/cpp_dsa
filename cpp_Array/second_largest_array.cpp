@@ -10,7 +10,6 @@ int main(){
     }
     int largest = INT_MIN;
     int Slargest = INT_MIN;
-        Slargest=arr[n-1];
     for(int i=0;i<n;i++){
         if(arr[i]>largest){
         Slargest=largest;
@@ -18,9 +17,6 @@ int main(){
     }else if(arr[i]>Slargest&& arr[i] !=largest){
         Slargest=arr[i];}
     }
-    cout<<Slargest<<" ";
-    for(int i=0;i<n;i++){
-        cout << arr[i] <<" ";
-    }
+    cout<<Slargest<<endl;
     return 0;
 }
