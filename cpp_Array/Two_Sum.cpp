@@ -3,23 +3,34 @@
 using namespace std; 
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& nums, int target) {
+    // APPROACH 1: Hash Map
+    // Time: O(N) | Space: O(N)
+    // Best for: Speed when memory is available.
+    vector<int> twoSumOptimal(vector<int>& nums, int target) {
         unordered_map<int, int> mp;
-        
         for (int i = 0; i < nums.size(); i++) {
             int partner = target - nums[i];
-            
-            // Check if partner exists in our history
-            if (mp.find(partner) != mp.end()) {
-                return {mp[partner], i};
-            }
-            
-            // If not found, save current number and its index
+            if (mp.find(partner) != mp.end()) return {mp[partner], i};
             mp[nums[i]] = i;
-        } // The loop ends here!
-        
-        // Return safely outside the loop if no pair exists
+        }
         return {};
+    }
+
+    // APPROACH 2: Sort + Two Pointers 
+    // Time: O(N log N) | Space: O(1) 
+    // Best for: Strict memory limits (returning Yes/No)
+    string twoSumNoMemory(vector<int> nums, int target) {
+        int left = 0;
+        int right = nums.size() - 1; 
+        sort(nums.begin(), nums.end());
+        
+        while (left < right) {
+            int sum = nums[left] + nums[right];
+            if (sum == target) return "yes";
+            else if (sum < target) left++;
+            else right--;
+        }
+        return "no";
     }
 };
 int main() {
