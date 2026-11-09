@@ -1,0 +1,57 @@
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        vector<int> ans;
+
+        // Edge case: if the matrix is empty
+        if (matrix.size() == 0) {
+            return ans;
+        }
+
+        int n = matrix.size();    // Number of rows
+        int m = matrix[0].size(); // Number of columns
+
+        // Our 4 walls
+        int top = 0;
+        int bottom = n - 1;
+        int left = 0;
+        int right = m - 1;
+
+        // Keep doing laps as long as the walls haven't crossed
+        while (top <= bottom && left <= right) {
+
+            // STEP 1: Drive Left to Right (across the top row)
+            for (int i = left; i <= right; i++) {
+                ans.push_back(matrix[top][i]);
+            }
+            top++; // Shrink the top wall down
+
+            // STEP 2: Drive Top to Bottom (down the right column)
+            for (int i = top; i <= bottom; i++) {
+                ans.push_back(matrix[i][right]);
+            }
+            right--; // Shrink the right wall left
+
+            // STEP 3: Drive Right to Left (across the bottom row)
+            // SAFETY CHECK: Make sure the top and bottom walls didn't cross!
+            if (top <= bottom) {
+                for (int i = right; i >= left; i--) {
+                    ans.push_back(matrix[bottom][i]);
+                }
+                bottom--; // Shrink the bottom wall up
+            }
+
+            // STEP 4: Drive Bottom to Top (up the left column)
+            // SAFETY CHECK: Make sure the left and right walls didn't cross!
+            if (left <= right) {
+                for (int i = bottom; i >= top; i--) {
+                    ans.push_back(matrix[i][left]);
+                }
+                left++; // Shrink the left wall right
+            }
+
+        } // The while loop repeats until the matrix is empty!
+
+        return ans;
+    }
+};
